@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Focus Timer</title>
+</head>
+<body style="text-align:center; margin-top:100px; font-family:sans-serif;">
+
+  <h1 id="timer">25:00</h1>
+
+  <button onclick="start()">Start</button>
+  <button onclick="pause()">Pause</button>
+  <button onclick="reset()">Reset</button>
+
+  <script>
+    let time = 1500;
+    let interval;
+
+    function update() {
+      let m = Math.floor(time / 60);
+      let s = time % 60;
+      document.getElementById("timer").innerText =
+        m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    function start() {
+      clearInterval(interval);
+      interval = setInterval(() => {
+        if (time > 0) {
+          time--;
+          update();
+        }
+      }, 1000);
+    }
+
+    function pause() {
+      clearInterval(interval);
+    }
+
+    function reset() {
+      time = 1500;
+      update();
+    }
+
+    update();
+  </script>
+
+</body>
+</html>
